@@ -22,6 +22,10 @@ passport.use(
   )
 );
 
+app.get("/", (req, res) => {
+  res.send("wow");
+});
+
 app.get(
   "/auth/google",
   passport.authenticate("google", {
