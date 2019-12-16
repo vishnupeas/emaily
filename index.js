@@ -23,7 +23,7 @@ passport.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("wow");
+  res.send({ hi: "there" });
 });
 
 app.get(
