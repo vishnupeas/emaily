@@ -13,15 +13,19 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
-      user.findOne({ google: profile.id }).then(excistingUser => {
+      User.findOne({ google: profile.id }).then(excistingUser => {
         if (excistingUser) {
+          console.log(excistingUser);
+          //get to the cookie stuff
+          done(null, excistingUser);
         } else {
           new User({
             googleId: profile.id,
             googleName: profile.displayName,
             googleEmail: profile.emails[0].value
-          }).save();
+          })
+            .save()
+            .then(user => done(null, user));
         }
       });
     }
