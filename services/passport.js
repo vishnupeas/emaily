@@ -5,6 +5,18 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("users");
 
+// called after the done is used after retriving the data from the user inside the passport.use
+// the user mentioned in here is the data that we give when call the done inside the passport.use
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -13,7 +25,7 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      User.findOne({ google: profile.id }).then(excistingUser => {
+      User.findOne({ googleId: profile.id }).then(excistingUser => {
         if (excistingUser) {
           console.log(excistingUser);
           //get to the cookie stuff
