@@ -13,10 +13,10 @@ function App() {
       <div>
         <BrowserRouter>
           <div>
+            <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route path="/surveys/new" component={SurveyNew} />
-            <Route path="/" component={Error404} />
           </div>
         </BrowserRouter>
       </div>
@@ -25,3 +25,4 @@ function App() {
 }
 
 export default App;
+//<Route path="/" component={Error404} />
