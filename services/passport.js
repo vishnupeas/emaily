@@ -25,22 +25,24 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleId: profile.id }).then(excistingUser => {
-        if (excistingUser) {
-          console.log(excistingUser);
-          //get to the cookie stuff
-          done(null, excistingUser);
-        } else {
-          new User({
-            googleId: profile.id,
-            googleName: profile.displayName,
-            googleEmail: profile.emails[0].value
-          })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const excistingUser = await User.findOne({ googleId: profile.id });
+
+      if (excistingUser) {
+        console.log("--- EXCISTING USER ---");
+        console.log(excistingUser);
+        return done(null, excistingUser);
+      }
+
+      const user = await new User({
+        googleId: profile.id,
+        googleName: profile.displayName,
+        googleEmail: profile.emails[0].value
+      }).save();
+
+      console.log("--- NEW USER ---");
+      console.log(user);
+      done(null, user);
     }
   )
 );
