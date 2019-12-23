@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Error404 from "./Error404";
@@ -8,9 +8,13 @@ const SurveyNew = () => <h2> SurvayNew </h2>;
 const Landing = () => <h2> Landing </h2>;
 
 function App() {
+  useEffect(() => {
+    fetchUser;
+  }, []);
+
   return (
     <React.Fragment>
-      <div>
+      <div className="container">
         <BrowserRouter>
           <div>
             <Header />
