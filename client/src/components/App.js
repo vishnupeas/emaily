@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchUser } from "../actions";
 
 import Error404 from "./Error404";
 import Header from "./Header";
@@ -9,7 +11,7 @@ const Landing = () => <h2> Landing </h2>;
 
 function App() {
   useEffect(() => {
-    fetchUser;
+    fetchUser();
   }, []);
 
   return (
@@ -28,5 +30,5 @@ function App() {
   );
 }
 
-export default App;
+export default (null, fetchUser)(App);
 //<Route path="/" component={Error404} />
