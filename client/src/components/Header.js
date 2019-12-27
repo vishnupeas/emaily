@@ -16,17 +16,16 @@ class Header extends Component {
         );
       default:
         return [
-          <li>
+          <li key="asdfa">
             <Payments />
           </li>,
-          <li>
+          <li key="213dasd">
             <a href="/api/logout">Logout</a>
           </li>
         ];
     }
   }
   render() {
-    console.log(this.props);
     return (
       <nav>
         <div className="nav-wrapper">
