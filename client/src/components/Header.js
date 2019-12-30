@@ -19,6 +19,9 @@ class Header extends Component {
           <li key="asdfa">
             <Payments />
           </li>,
+          <li style={{ margin: "0 10px" }}>
+            Credits: {this.props.auth.credits}
+          </li>,
           <li key="213dasd">
             <a href="/api/logout">Logout</a>
           </li>
