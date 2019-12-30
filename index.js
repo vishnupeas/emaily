@@ -27,6 +27,7 @@ app.use(passport.session());
 
 //Makes use of the passport to handle data fow
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
