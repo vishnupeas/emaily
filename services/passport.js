@@ -28,6 +28,9 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const excistingUser = await User.findOne({ googleId: profile.id });
 
+      console.log(excistingUser);
+      //checking out what comes when the user is new and is being registered
+
       if (excistingUser) {
         console.log("--- EXCISTING USER ---");
         console.log(excistingUser);
