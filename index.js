@@ -31,6 +31,7 @@ app.use(passport.session());
 //Makes use of the passport to handle data fow
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   //Express will serve up the productioin assets like main.js and main.class
