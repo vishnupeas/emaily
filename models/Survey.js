@@ -1,5 +1,5 @@
-const mongose = require("mongoose");
-const RecipientSchema = require("./Recipient");
+const mongoose = require("mongoose");
+const RecipientSchema = require("./Recipients");
 const { Schema } = mongoose;
 
 const surverySchema = new Schema({
@@ -14,4 +14,4 @@ const surverySchema = new Schema({
   lastResponded: Date
 });
 
-mongoose.model("surveys", surveySchema);
+mongoose.model("surveys", surverySchema);
