@@ -11,6 +11,7 @@ mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true
 });
 require("./models/User");
+require("./models/Survey");
 
 //passport with the help of the mongoose and the model classses defined gets the passport defined
 require("./services/passport");
