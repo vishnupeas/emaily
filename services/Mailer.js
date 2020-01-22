@@ -1,3 +1,20 @@
+// const keys = require("../config/keys");
+// const sgMail = require("sendgrid").mail;
+//
+// module.exports = async ({ subject, recipients }, content) => {
+//   // using SendGrid's v3 Node.js Library
+//   // https://github.com/sendgrid/sendgrid-nodejs
+//   sgMail.setApiKey(keys.sendGridKey);
+//   const formattedRecipients = recipients.map(({ email }) => email);
+//   const msg = {
+//     to: formattedRecipients,
+//     from: "no-reply@emaily.com",
+//     subject: subject,
+//     html: content
+//   };
+//   await sgMail.send(msg);
+// };
+
 const sendgrid = require("sendgrid");
 const helper = sendgrid.mail;
 const keys = require("../config/keys");
@@ -7,16 +24,13 @@ class Mailer extends helper.Mail {
     super();
 
     this.sgApi = sendgrid(keys.sendGridKey);
+
     this.from_email = new helper.Email("no-reply@emaily.com");
     this.subject = subject;
     this.body = new helper.Content("text/html", content);
     this.recipients = this.formatAddresses(recipients);
 
-    // BASE CLASS FUNCTIONS
     this.addContent(this.body);
-
-    //HELPER FUNCTIONS
-    //setting up click tracking
     this.addClickTracking();
     this.addRecipients();
   }
@@ -47,13 +61,11 @@ class Mailer extends helper.Mail {
   async send() {
     const request = this.sgApi.emptyRequest({
       method: "POST",
-      path: "/v3/mail/send",
+      path: "v3/mail/send",
       body: this.toJSON()
     });
 
     const response = await this.sgApi.API(request);
-    console.log(response);
-    // console.log(response);
     return response;
   }
 }
