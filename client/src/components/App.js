@@ -6,7 +6,7 @@ import { fetchUser } from "../actions";
 // import Error404 from "./Error404";
 import Header from "./Header";
 import Landing from "./Landing";
-const Dashboard = () => <h2> Dashboard </h2>;
+import Dashboard from "./Dashboard";
 const SurveyNew = () => <h2> SurvayNew </h2>;
 
 class App extends Component {
