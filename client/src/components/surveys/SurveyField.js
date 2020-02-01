@@ -2,11 +2,12 @@
 //label and text input
 import React from "react";
 
-export default props => {
+export default ({ input, label, meta: { error, touched } }) => {
   return (
     <div>
-      <label>{props.label}</label>
-      <input {...props} />
+      <label>{label}</label>
+      <input {...input} />
+      {touched && error}
     </div>
   );
 };
