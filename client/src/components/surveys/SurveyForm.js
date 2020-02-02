@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import SurveyField from "./SurveyField";
+import validateEmails from "../../utils/validateEmails";
 
 import _ from "lodash";
 
@@ -37,7 +38,7 @@ class SurveyForm extends Component {
           <Link to="/surveys" className="red btn-flat white-text">
             Cancel
           </Link>
-          <button class="teal btn-flat right white-text" type="submit">
+          <button className="teal btn-flat right white-text" type="submit">
             Next
             <i className="material-icons right">done</i>
           </button>
@@ -50,9 +51,13 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {};
 
-  if (!values.title) {
-    errors.title = "You must provide a title";
-  }
+  errors.emails = validateEmails(values.emails || "");
+
+  _.each(FIELDS, ({ name }) => {
+    if (!values[name]) {
+      errors[name] = "You Must provide a value";
+    }
+  });
 
   return errors;
 }

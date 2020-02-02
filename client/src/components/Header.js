@@ -17,13 +17,13 @@ class Header extends Component {
         );
       default:
         return [
-          <li key="asdfa">
+          <li key="key1">
             <Payments />
           </li>,
-          <li style={{ margin: "0 10px" }}>
+          <li key="key2" style={{ margin: "0 10px" }}>
             Credits: {this.props.auth.credits}
           </li>,
-          <li key="213dasd">
+          <li key="key3">
             <a href="/api/logout">Logout</a>
           </li>
         ];
