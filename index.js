@@ -5,6 +5,8 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
+//teting out vs code
+
 //mongoose connecting to the mongodb database that we define and making use of the User model class
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
