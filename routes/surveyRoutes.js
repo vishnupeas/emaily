@@ -21,7 +21,7 @@ module.exports = app => {
       dateSent: Date.now()
     });
 
-    //  Great place to send an email!
+     // Great place to send an email!
     const mailer = new Mailer(survey, surveyTemplate(survey));
     mailer.send();
   });
