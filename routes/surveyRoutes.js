@@ -15,11 +15,21 @@ module.exports = app => {
     const { title, subject, body, recipients } = req.body;
 
     app.post("/api/surveys/webhooks", (req, res) => {
-      const events = _.map(req.body, event => {
-        const pathname = new URL(event.url).pathname;
-        const p = new Path("api/surveys/:surveyId/:choice");
-        console.log(p.test(pathname));
+      const p = new Path("api/surveys/:surveyId/:choice");
+
+      const events = _.map(req.body, ({ email, url }) => {
+        const match = p.test(new URL(url).pathname);
+        if (match) {
+          return { email, surveyId: match.surveyId, choice: match.choice };
+        }
       });
+      console.log(events);
+
+      const compactEvents = _.compact(events);
+      const uniqueEvents = _.uniqBy(compactEvents, "email", "surveyId");
+      console.log(uniqueEvents);
+
+      res.send({});
     });
 
     app.get("/api/surveys/nice", (req, res) => {
