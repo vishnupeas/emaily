@@ -23,6 +23,10 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/surveys" component={Dashboard} />
               <Route path="/surveys/new" component={SurveyNew} />
+              <Route
+                path="/api/surveys/:something1/:something2"
+                component={Dashboard}
+              />
             </div>
           </BrowserRouter>
         </div>
@@ -31,8 +35,5 @@ class App extends Component {
   }
 }
 
-export default connect(
-  null,
-  { fetchUser }
-)(App);
+export default connect(null, { fetchUser })(App);
 //<Route path="/" component={Error404} />
