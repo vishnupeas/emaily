@@ -25,6 +25,7 @@ module.exports = app => {
 
   app.get("/api/surveys/:surveyId/:choice", (req, res) => {
     console.log("testing");
+    res.redirect("/");
     res.send("Thanks for voting");
   });
 
