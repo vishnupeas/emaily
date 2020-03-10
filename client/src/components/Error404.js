@@ -445,8 +445,7 @@ const Error404 = () => {
             />
           </g>
         </svg>
-
-        <h2>PAGE NOT FOUND!</h2>
+        <h2 class="wow">PAGE NOT FOUND!</h2>
       </div>
     </React.Fragment>
   );
